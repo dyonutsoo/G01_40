@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "859862233087",
+    "project_id": "door-security-lock-app",
+    "storage_bucket": "door-security-lock-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859862233087:android:7464660776e5b37bfa81ca",
+        "android_client_info": {
+          "package_name": "com.example.door_security_lock_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859862233087-qdagj10ar0mhv1i2ofljns6ilkq15r8o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.door_security_lock_app",
+            "certificate_hash": "25dd13c3763567ec827ad1ed4c6f85008e49ef51"
+          }
+        },
+        {
+          "client_id": "859862233087-l91sif9hbn2f4lrg39dg6ti7l39slqre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt3ITU8UIoQX_ruHeZAxmvyi3GlLkhD7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859862233087-l91sif9hbn2f4lrg39dg6ti7l39slqre.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "859862233087-fiv9en2dg3cir5e4dfeflmptdhcc1dom.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.doorSecurityLockApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
