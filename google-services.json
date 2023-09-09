@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6229053769",
+    "project_id": "door-security-lock",
+    "storage_bucket": "door-security-lock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6229053769:android:9000461324d40017f90a98",
+        "android_client_info": {
+          "package_name": "com.example.door_security_lock_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6229053769-nu3doi4979msdaqcaigqru9ebsg79p95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl8qGM3ngHG8YP_dKdfGwW1RB9CtVebpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6229053769-nu3doi4979msdaqcaigqru9ebsg79p95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
