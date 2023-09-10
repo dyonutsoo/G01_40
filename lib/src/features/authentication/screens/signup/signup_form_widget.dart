@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text.dart';
+import '../dashboard/dashboard.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,24 +26,21 @@ class SignUpFormWidget extends StatelessWidget {
           children: [
             TextFormField(
               controller: controller.fullName,
-              decoration: const InputDecoration(label: Text(tFullName), prefixIcon: Icon(Icons.person_outline_rounded)),
+              decoration: const InputDecoration(
+                  label: Text(tFullName),
+                  prefixIcon: Icon(Icons.person_outline_rounded)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
               controller: controller.email,
-              decoration: const InputDecoration(label: Text(tEmail), prefixIcon: Icon(Icons.email_outlined)),
+              decoration: const InputDecoration(
+                  label: Text(tEmail), prefixIcon: Icon(Icons.email_outlined)),
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
               controller: controller.phoneNo,
-              decoration: const InputDecoration(label: Text(tPhoneNo), prefixIcon: Icon(Icons.numbers)),
-            ),
-            const SizedBox(height: tFormHeight - 20),
-            TextFormField(
-              controller: controller.password,
               decoration: const InputDecoration(
-                  label: Text(tPassword),
-                  prefixIcon: Icon(Icons.fingerprint)),
+                  label: Text(tPhoneNo), prefixIcon: Icon(Icons.numbers)),
             ),
             const SizedBox(height: tFormHeight - 10),
             SizedBox(
@@ -53,24 +50,49 @@ class SignUpFormWidget extends StatelessWidget {
                   primary: Colors.black87, // Set your desired color here
                 ),
                 onPressed: () {
-                  if(_formKey.currentState!.validate()){
-                    //SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                    //SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
-
+                  if (_formKey.currentState!.validate()) {
                     final user = UserModel(
                       email: controller.email.text.trim(),
-                      password: controller.password.text.trim(),
                       fullName: controller.fullName.text.trim(),
                       phoneNo: controller.phoneNo.text.trim(),
                     );
                     SignUpController.instance.createUser(user);
-
-                    //Get.to(() => const OTPScreen());
                   }
                 },
-                child: Text(tSignup.toUpperCase()),
+                child: Text(tProfileBtn.toUpperCase()),
               ),
-            )
+            ),
+            const SizedBox(height: 30),
+            const Center(
+              child: Text(
+                "OR",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              "Already created a Profile?",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold // Adjust the font size as needed
+              ),
+            ),
+            const SizedBox(height: 5),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue, // Set your desired color here
+                ),
+                onPressed: () {
+                  Get.to(() => const Dashboard());
+                },
+                child: Text(tContinue.toUpperCase()),
+              ),
+            ),
           ],
         ),
       ),

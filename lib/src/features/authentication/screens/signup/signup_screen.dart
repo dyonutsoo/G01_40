@@ -1,4 +1,3 @@
-import 'package:door_security_lock_app/src/features/authentication/screens/signup/signup_footer_widget.dart';
 import 'package:door_security_lock_app/src/features/authentication/screens/signup/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../../common_widgets/form/form_header_widget.dart';
@@ -25,7 +24,6 @@ class SignUpScreen extends StatelessWidget {
                   imageHeight: 0.15,
                 ),
                 SignUpFormWidget(),
-                SignUpFooterWidget(),
               ],
             ),
           ),

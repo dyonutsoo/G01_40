@@ -7,32 +7,85 @@ import 'package:door_security_lock_app/src/repository/authentication_repository/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modern_form_line_awesome_icons/modern_form_line_awesome_icons.dart';
+import '../../controllers/user_profile_services.dart';
 import 'update_profile_screen.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  File? _imageFile; // Store the selected image file
+
+  // Function to open the image picker
+  Future<void> _pickImage() async {
+    final pickedFile =
+    await ImagePicker().getImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+
+      // Save the user's profile image
+      UserProfileService.saveProfileImage("user_id_here", _imageFile!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () => Get.back(), icon: const Icon(LineAwesomeIcons.angle_left)),
-        title: Text(tProfile, style: Theme.of(context).textTheme.headline4),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(LineAwesomeIcons.angle_left),
+        ),
+        title: const Text(
+          tProfile,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black87,
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(tDefaultSize),
           child: Column(
             children: [
-
               /// -- IMAGE
               Stack(
                 children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100), child: const Image(image: AssetImage(tProfileImage))),
+                  Hero(
+                    tag: 'profile_image', // Unique tag for the Hero widget
+                    child: GestureDetector(
+                      onTap: _pickImage, // Open image picker on tap
+                      child: SizedBox(
+                        width: 120,
+                        height: 120,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: _imageFile != null
+                              ? Image.file(
+                            _imageFile!,
+                            fit: BoxFit.cover,
+                          )
+                              : const Image(
+                            image: AssetImage(
+                                tProfileImage), // Display default image
+                            fit: BoxFit.cover, // Ensure the default image fits the circular border
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 0,
@@ -40,29 +93,37 @@ class ProfileScreen extends StatelessWidget {
                     child: Container(
                       width: 35,
                       height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: const Icon(
-                        LineAwesomeIcons.pencil,
-                        color: Colors.black,
-                        size: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: tSecondaryColor,
+                      ),
+                      child: IconButton(
+                        onPressed: _pickImage, // Open image picker on click
+                        icon: const Icon(
+                          LineAwesomeIcons.pencil,
+                          color: Colors.white,
+                          size: 20,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              Text(tProfileHeading, style: Theme.of(context).textTheme.headline4),
-              Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyText2),
+
               const SizedBox(height: 20),
 
               /// -- BUTTON
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(() => const UpdateProfileScreen()),
+                  onPressed: () =>
+                      Get.to(() => UpdateProfileScreen(imageFile: _imageFile)),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
-                  child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
+                      backgroundColor: tSecondaryColor,
+                      foregroundColor: tWhiteColor,
+                      side: BorderSide.none,
+                      shape: const StadiumBorder()),
+                  child: const Text("View & Edit Profile"),
                 ),
               ),
               const SizedBox(height: 30),
@@ -70,7 +131,10 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 10),
 
               /// -- MENU
-              ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {}),
+              ProfileMenuWidget(
+                  title: "Settings",
+                  icon: LineAwesomeIcons.cog,
+                  onPress: () {}),
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
@@ -88,12 +152,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       confirm: Expanded(
                         child: ElevatedButton(
-                          onPressed: () => AuthenticationRepository.instance.logout(),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, side: BorderSide.none),
+                          onPressed: () =>
+                              AuthenticationRepository.instance.logout(),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.redAccent,
+                              side: BorderSide.none),
                           child: const Text("Yes"),
                         ),
                       ),
-                      cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
+                      cancel: OutlinedButton(
+                          onPressed: () => Get.back(), child: const Text("No")),
                     );
                   }),
             ],

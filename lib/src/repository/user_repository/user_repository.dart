@@ -8,8 +8,11 @@ class UserRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
-  Future <void> createUser(UserModel user) async {
-    await _db.collection("Users").add(user.toJson()).whenComplete(() {
+  Future<void> createUser(UserModel user) async {
+    // Remove the "Password" field from the user data
+    final userData = user.toJson()..remove("Password");
+
+    await _db.collection("Users").add(userData).whenComplete(() {
       Get.snackbar(
         "Success",
         "Your account has been created.",
@@ -27,22 +30,23 @@ class UserRepository extends GetxController {
   }
 
   Future<UserModel> getUserDetails(String email) async {
-    final snapshot = await _db.collection("Users").where(
-        "Email", isEqualTo: email).get();
-    final userData = snapshot.docs
-        .map((e) => UserModel.fromSnapshot(e))
-        .single;
+    final snapshot =
+    await _db.collection("Users").where("Email", isEqualTo: email).get();
+    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     return userData;
   }
 
   Future<List<UserModel>> allUser() async {
     final snapshot = await _db.collection("Users").get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e))
-        .toList();
+    final userData =
+    snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     return userData;
   }
 
-  Future<void> updateUserRecord(UserModel user) async {
-    await _db.collection("Users").doc(user.id).update(user.toJson());
+  Future<void> updateUserRecord(UserModel updatedUser) async {
+    final userDoc = _db.collection("Users").doc(updatedUser.id);
+    await userDoc.update(updatedUser.toJson());
   }
+
+  getUserData(String email) {}
 }

@@ -5,7 +5,7 @@ const String tNext = "Next";
 const String tLogin = "Login";
 const String tEmail = "Email";
 const String tLogout = "Logout";
-const String tSignup = "Signup";
+const String tProfileBtn = "Create";
 const String tPhoneNo = "Phone Number";
 const String tPassword = "Password";
 const String tFullName = "Full Name";
@@ -39,7 +39,7 @@ const String tResetViaPhone = "Reset via Phone Verification";
 const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive OTP";
 
 // -- Forget Password Via E-Mail - Text
-const String tForgetMailSubTitle = "Enter your registered Email to receive OTP";
+const String tForgetMailSubTitle = "Enter your registered Email to receive password reset email";
 
 // -- OTP Screen - Text
 const String tOtpTitle = "OTP";
@@ -60,7 +60,6 @@ const String tEmailVerificationSubTitle = "We have just send email verification 
 const String tResendEmailLink = "Resend Email link";
 const String tBackToLogin = "Back to login";
 const String tContinue = "Continue";
-
 
 // -- Profile Screen - Text
 const String tProfile ="Profile";

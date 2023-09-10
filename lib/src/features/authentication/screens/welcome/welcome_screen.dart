@@ -28,19 +28,19 @@ class WelcomeScreen extends StatelessWidget {
           TFadeInAnimation(
             durationInMs: 1200,
             animate: TAnimatePosition(
-                bottomAfter: 0,
-                bottomBefore: -100,
-                leftBefore: 0,
-                leftAfter: 0,
-                topAfter: 0,
-                topBefore: 0,
-                rightAfter: 0,
-                rightBefore: 0,
+              bottomAfter: 0,
+              bottomBefore: -100,
+              leftBefore: 0,
+              leftAfter: 0,
+              topAfter: 0,
+              topBefore: 0,
+              rightAfter: 0,
+              rightBefore: 0,
             ),
             child: Container(
               padding: const EdgeInsets.all(tDefaultSize),
               child:
-                  Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 Image(image: const AssetImage(tWelcomeScreenImage), height: height * 0.35),
                 Column(
                   children: [
@@ -58,34 +58,19 @@ class WelcomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                        child: OutlinedButton(
-                            onPressed: () => Get.to(() => const LoginScreen()),
-                            style: OutlinedButton.styleFrom(
-                              shape: const RoundedRectangleBorder(),
-                              foregroundColor: tSecondaryColor,
-                              side: const BorderSide(color: tSecondaryColor),
-                              padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
-                            ),
-                            child: Text(tLogin.toUpperCase()),
+                      child: OutlinedButton(
+                        onPressed: () => Get.to(() => const LoginScreen()),
+                        style: OutlinedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(),
+                          foregroundColor: tWhiteColor,
+                          backgroundColor: tSecondaryColor,
+                          side: const BorderSide(color: tSecondaryColor),
+                          padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
                         ),
+                        child: Text(tLogin.toUpperCase()),
+                      ),
                     ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    Expanded(
-                        child: ElevatedButton(
-                            onPressed: ()  => Get.to(() => const SignUpScreen()),
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            shape: const RoundedRectangleBorder(),
-                            foregroundColor: tWhiteColor,
-                            backgroundColor: tSecondaryColor,
-                            side: const BorderSide(color: tSecondaryColor),
-                            padding: const EdgeInsets.symmetric(vertical: tButtonHeight),
-                          ),
-                            child: Text(tSignup.toUpperCase()),
-                        ),
-                    ),
+// create profile here
                   ],
                 )
               ]),

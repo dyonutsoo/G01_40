@@ -2,11 +2,8 @@ import 'package:door_security_lock_app/src/common_widgets/form/form_header_widge
 import 'package:door_security_lock_app/src/constants/images.dart';
 import 'package:door_security_lock_app/src/constants/sizes.dart';
 import 'package:door_security_lock_app/src/constants/text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../welcome/welcome_screen.dart';
 
 class ForgetPasswordPhoneScreen extends StatelessWidget {
   final email = TextEditingController();

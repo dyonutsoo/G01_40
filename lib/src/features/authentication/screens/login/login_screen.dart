@@ -20,9 +20,9 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 const FormHeaderWidget(
-                image: tWelcomeScreenImage,
-                title: tLoginTitle,
-                subTitle: tLoginSubTitle,
+                  image: tWelcomeScreenImage,
+                  title: tLoginTitle,
+                  subTitle: tLoginSubTitle,
                 ),
                 LoginFormWidget(),
               ],

@@ -28,8 +28,8 @@ class AuthenticationRepository extends GetxController {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
         : user.emailVerified
-            ? Get.offAll(() => const Dashboard())
-            : Get.offAll(() => const MailVerification());
+        ? Get.offAll(() => const Dashboard())
+        : Get.offAll(() => const MailVerification());
   }
 
   Future<void> phoneAuthentication(String phoneNo) async {
