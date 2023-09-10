@@ -3,7 +3,6 @@ import 'package:door_security_lock_app/src/constants/images.dart';
 import 'package:door_security_lock_app/src/constants/text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../profile/profile_screen.dart';
 
@@ -15,11 +14,11 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const Icon(Icons.menu, color: Colors.black),
-      title: Text(tAppName, style: Theme.of(context).textTheme.headline6),
+      title: Text(tAppName, style: Theme.of(context).textTheme.titleLarge),
       centerTitle: true,
       elevation: 0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
+      iconTheme: const IconThemeData(color: Colors.black), // Set icon color to black
       // Added text color
       actions: [
         Container(
@@ -37,6 +36,5 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(55);
 }
