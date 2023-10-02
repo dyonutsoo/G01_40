@@ -36,11 +36,42 @@ class UserRepository extends GetxController {
     return userData;
   }
 
-  Future<List<UserModel>> allUser() async {
-    final snapshot = await _db.collection("Users").get();
-    final userData =
-    snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
-    return userData;
+  Future<List<UserModel>?> getAllUsers() async {
+    try {
+      final snapshot = await _db.collection("Users").get();
+      final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+      return userData;
+    } catch (error) {
+      Get.snackbar("Error", "Failed to fetch user data. Try again",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.redAccent.withOpacity(0.1),
+          colorText: Colors.red);
+      print(error.toString());
+      return null;
+    }
+  }
+
+  Future<void> deleteUser(String userId) async {
+    try {
+      await _db.collection("Users").doc(userId).delete();
+
+      Get.snackbar(
+        "Success",
+        "User has been deleted.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.withOpacity(0.1),
+        colorText: Colors.green,
+      );
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Failed to delete the user. Try again.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent.withOpacity(0.1),
+        colorText: Colors.red,
+      );
+      print(error.toString());
+    }
   }
 
   Future<void> updateUserRecord(UserModel updatedUser) async {
