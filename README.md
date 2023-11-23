@@ -49,6 +49,23 @@ flutter pub get
 flutter run
 run the project using any emulator or device
 
+## Credentials to login
+
+1. Admin
+
+email - edwardtjm@gmail.com
+password - admin123
+
+2. User
+
+email - eddietjm@gmail.com
+password - eddie123
+
+3. RFID
+
+email - eddietjm@gmail.com
+password - 0000
+
 
 
 
