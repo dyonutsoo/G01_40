@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import '../../../../constants/colors.dart';
-import 'RFID_details.dart';
-import 'RFID_password_access.dart';
-import 'RFID_tag_access.dart';
+import 'Admin_RFID_denied.dart';
+import 'Admin_RFID_details.dart';
+import 'Admin_RFID_granted.dart';
+import 'Admin_password_denied.dart';
+import 'Admin_password_granted.dart';
+import 'Admin_user_data.dart';
 
-class RFIDPage extends StatefulWidget {
-  const RFIDPage({Key? key}) : super(key: key);
+class AdminRFIDPage extends StatefulWidget {
+  const AdminRFIDPage({Key? key}) : super(key: key);
 
   @override
-  _RFIDPageState createState() => _RFIDPageState();
+  _AdminRFIDPageState createState() => _AdminRFIDPageState();
 }
 
-class _RFIDPageState extends State<RFIDPage> {
+class _AdminRFIDPageState extends State<AdminRFIDPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -35,39 +38,54 @@ class _RFIDPageState extends State<RFIDPage> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'RFID Details',
+                'Users RFID',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
-            _buildButton("View RFID Details", () {
-              // Navigate to the RFIDPasswordPage when "Change Password" is clicked
+            const SizedBox(height: 10),
+            _buildButton("Display Users\'s RFID", () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const UserEditPage()),
+                MaterialPageRoute(builder: (context) => const UserDataDisplay()),
+              );
+            }),
+            const SizedBox(height: 10),
+            _buildButton("Edit Users\'s RFID", () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const UserSearchPage()),
               );
             }),
             const SizedBox(height: 30),
             const Text(
-              'RFID Access Logs',
+              'RFID Tag History Logs',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            _buildButton("View Access History", () {
-              // Navigate to the RFIDPasswordPage when "Change Password" is clicked
+            _buildButton("View Granted Access", () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const RFIDPasswordAccessLogs()),
+                MaterialPageRoute(builder: (context) => const PasswordGrantedPage()),
+              );
+            }),
+            const SizedBox(height: 16),
+            _buildButton("View Denied Access", () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const PasswordDeniedPage()),
               );
             }),
             const SizedBox(height: 25),
             const Text(
-              'Password Access Logs',
+              'Password History Logs',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            _buildButton("View Access History", () {
-              // Navigate to the RFIDHistory page when "View History" is clicked
-              // Make sure you have RFIDHistory defined and imported
+            _buildButton("View Granted Access", () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const RFIDTagAccessLogs()),
+                MaterialPageRoute(builder: (context) => const RFIDGrantedPage()),
+              );
+            }),
+            const SizedBox(height: 16),
+            _buildButton("View Denied Access", () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const RFIDDeniedPage()),
               );
             }),
           ],

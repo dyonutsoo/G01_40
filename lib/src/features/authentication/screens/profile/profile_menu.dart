@@ -5,7 +5,7 @@ import '../../../../constants/colors.dart';
 
 
 class ProfileMenuWidget extends StatelessWidget {
-  const ProfileMenuWidget({
+  const ProfileMenuWidget( {
     Key? key,
     required this.title,
     required this.icon,
@@ -46,3 +46,8 @@ class ProfileMenuWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+

@@ -29,12 +29,12 @@ class DefaultFirebaseOptions {
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -44,41 +44,41 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAGUfL2TotSgH5785aAX6upMeV8iM9Fhi8',
-    appId: '1:859862233087:web:b118bcbd7f9aca56fa81ca',
-    messagingSenderId: '859862233087',
-    projectId: 'door-security-lock-app',
-    authDomain: 'door-security-lock-app.firebaseapp.com',
-    storageBucket: 'door-security-lock-app.appspot.com',
+    apiKey: 'AIzaSyAWR4hpO1Xtv6FxkmgM8v-jCZWnW-4Y-Mw',
+    appId: '1:129252803791:web:c6deb566883d482ebca3ba',
+    messagingSenderId: '129252803791',
+    projectId: 'door-security-lock-c2216',
+    authDomain: 'door-security-lock-c2216.firebaseapp.com',
+    databaseURL: 'https://door-security-lock-c2216-default-rtdb.firebaseio.com',
+    storageBucket: 'door-security-lock-c2216.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCt3ITU8UIoQX_ruHeZAxmvyi3GlLkhD7k',
-    appId: '1:859862233087:android:7464660776e5b37bfa81ca',
-    messagingSenderId: '859862233087',
-    projectId: 'door-security-lock-app',
-    storageBucket: 'door-security-lock-app.appspot.com',
+    apiKey: 'AIzaSyBXCz3oloUKASYlqtqS5QOkjj11J1JsncM',
+    appId: '1:129252803791:android:740e04eb5d6fd32fbca3ba',
+    messagingSenderId: '129252803791',
+    projectId: 'door-security-lock-c2216',
+    databaseURL: 'https://door-security-lock-c2216-default-rtdb.firebaseio.com',
+    storageBucket: 'door-security-lock-c2216.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB1rcGgmMXCpka_u8_NIjPJ8V8cXPDr1ag',
-    appId: '1:859862233087:ios:ca63bc7d4546766efa81ca',
-    messagingSenderId: '859862233087',
-    projectId: 'door-security-lock-app',
-    storageBucket: 'door-security-lock-app.appspot.com',
-    androidClientId: '859862233087-qdagj10ar0mhv1i2ofljns6ilkq15r8o.apps.googleusercontent.com',
-    iosClientId: '859862233087-fiv9en2dg3cir5e4dfeflmptdhcc1dom.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCHZSWRV5M661mabCPpGs-Z94HA-BTDxeM',
+    appId: '1:129252803791:ios:250d271073bc0a5cbca3ba',
+    messagingSenderId: '129252803791',
+    projectId: 'door-security-lock-c2216',
+    databaseURL: 'https://door-security-lock-c2216-default-rtdb.firebaseio.com',
+    storageBucket: 'door-security-lock-c2216.appspot.com',
     iosBundleId: 'com.example.doorSecurityLockApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB1rcGgmMXCpka_u8_NIjPJ8V8cXPDr1ag',
-    appId: '1:859862233087:ios:887056783aa65b28fa81ca',
-    messagingSenderId: '859862233087',
-    projectId: 'door-security-lock-app',
-    storageBucket: 'door-security-lock-app.appspot.com',
-    androidClientId: '859862233087-qdagj10ar0mhv1i2ofljns6ilkq15r8o.apps.googleusercontent.com',
-    iosClientId: '859862233087-th92vmu4n21q4bqcjfraurk6g4k3c5ss.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCHZSWRV5M661mabCPpGs-Z94HA-BTDxeM',
+    appId: '1:129252803791:ios:2dd0f6e23ca26852bca3ba',
+    messagingSenderId: '129252803791',
+    projectId: 'door-security-lock-c2216',
+    databaseURL: 'https://door-security-lock-c2216-default-rtdb.firebaseio.com',
+    storageBucket: 'door-security-lock-c2216.appspot.com',
     iosBundleId: 'com.example.doorSecurityLockApp.RunnerTests',
   );
 }

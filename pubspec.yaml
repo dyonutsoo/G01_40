@@ -20,18 +20,25 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.1
   flutter_otp_text_field: ^1.1.1
-  firebase_core: ^2.15.1
-  firebase_auth: ^4.8.0
+  firebase_core: ^2.19.0
+  firebase_auth: ^4.11.1
   modern_form_line_awesome_icons: ^2.0.1
   cloud_firestore: ^4.9.1
   awesome_snackbar_content: ^0.1.3
   image_picker: ^0.8.4
   firebase_storage: ^11.2.6
+  url_launcher: ^6.0.12
+  firebase_database: ^10.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  image_path: "assets/images/welcome_images/welcome_screen_image.jpg"
 
 flutter_native_splash:
   color: "#F7F6F1"
@@ -53,6 +60,7 @@ flutter:
     - assets/images/forget_password/
     - assets/images/dashboard/
     - assets/images/profile/
+    - assets/arknights.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

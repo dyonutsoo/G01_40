@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:door_security_lock_app/src/features/authentication/screens/dashboard/dashboard.dart';
 import 'package:door_security_lock_app/src/features/authentication/screens/mail_verification/mail_verification.dart';
 import 'package:door_security_lock_app/src/features/authentication/screens/welcome/welcome_screen.dart';
@@ -5,6 +6,7 @@ import 'package:door_security_lock_app/src/repository/authentication_repository/
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import '../../features/authentication/screens/dashboard/admin_dashboard.dart';
 import 'exception/login_email_password.dart';
 import 'exception/signup_email_password.dart';
 
@@ -25,12 +27,21 @@ class AuthenticationRepository extends GetxController {
   }
 
   setInitialScreen(User? user) async {
-    user == null
-        ? Get.offAll(() => const WelcomeScreen())
-        : user.emailVerified
-        ? Get.offAll(() => const Dashboard())
-        : Get.offAll(() => const MailVerification());
+    if (user == null) {
+      Get.offAll(() => const WelcomeScreen());
+    } else if (user.emailVerified) {
+      final userEmail = user.email ?? ''; // Ensure userEmail is not null
+      if (await isAdmin(userEmail)) {
+        Get.offAll(() => AdminDashboard()); // Redirect admin to admin dashboard
+      } else {
+        Get
+            .offAll(() => const Dashboard()); // Regular user goes to the user dashboard
+      }
+    } else {
+      Get.offAll(() => const MailVerification());
+    }
   }
+
 
   Future<void> phoneAuthentication(String phoneNo) async {
     await _auth.verifyPhoneNumber(
@@ -61,8 +72,8 @@ class AuthenticationRepository extends GetxController {
     return credentials.user != null ? true : false;
   }
 
-  Future<String?> createUserWithEmailAndPassword(
-      String email, String password) async {
+  Future<String?> createUserWithEmailAndPassword(String email,
+      String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -80,9 +91,18 @@ class AuthenticationRepository extends GetxController {
   }
 
   Future<String?> loginWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, {bool isAdmin = false}) async {
     try {
+      if (email.isEmpty || password.isEmpty) {
+        return "Email and password are required.";
+      }
+
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+      if (isAdmin) {
+        // Handle admin login specific logic here
+      }
+
     } on FirebaseAuthException catch (e) {
       final ex = LogInWithEmailAndPasswordFailure.code(e.code);
       return ex.message;
@@ -92,6 +112,8 @@ class AuthenticationRepository extends GetxController {
     }
     return null;
   }
+
+
 
   Future<void> sendEmailVerification() async {
     try {
@@ -109,7 +131,7 @@ class AuthenticationRepository extends GetxController {
     try {
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const WelcomeScreen());
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw e.message!;
     } on FormatException catch (e) {
       throw e.message;
@@ -117,4 +139,30 @@ class AuthenticationRepository extends GetxController {
       throw 'Unable to logout. Try again.';
     }
   }
+
+  Future<bool> isAdmin(String email) async {
+    try {
+      final adminReference = FirebaseDatabase.instance.reference().child('Admin').child('AdminEmail');
+
+      DatabaseEvent event = await adminReference.once();
+      DataSnapshot snapshot = event.snapshot;
+
+      if (snapshot.value != null) {
+        String adminEmail = snapshot.value as String;
+
+        return adminEmail == email;
+      }
+    } catch (e) {
+      // Handle errors if the data retrieval fails
+      print("Error checking admin status: $e");
+    }
+    return false;
+  }
+
+
 }
+
+
+
+
+

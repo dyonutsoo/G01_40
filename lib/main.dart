@@ -1,7 +1,7 @@
 import 'package:door_security_lock_app/firebase_options.dart';
 import 'package:door_security_lock_app/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:door_security_lock_app/src/repository/authentication_repository/authentication_repository.dart';
-import 'package:door_security_lock_app/src/features/authentication/controllers/profile_controller.dart'; // Import ProfileController
+import 'package:door_security_lock_app/src/features/authentication/controllers/profile_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +27,4 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
     );
   }
-
-
 }
